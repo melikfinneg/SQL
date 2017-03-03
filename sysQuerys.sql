@@ -23,7 +23,7 @@ WHERE t.name LIKE '%BSTablaDimension%'
 
 --delete contraints
 ALTER TABLE Orders
-DROP FOREIGN KEY fk_PerOrders
+DROP FOREIGN KEY fk_PerOrders --CONSTRAINTS (no FOREIGN KEYS!)
 
 --delete index
 DROP INDEX table_name.index_name
