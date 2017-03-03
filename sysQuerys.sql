@@ -27,3 +27,12 @@ DROP FOREIGN KEY fk_PerOrders --CONSTRAINTS (no FOREIGN KEYS!)
 
 --delete index
 DROP INDEX table_name.index_name
+
+--consulta truco-acumulativa
+SELECT EmpresaId, A.fecha, A.importetotal, 
+SUM(A.importetotal) over (PARTITION BY Empresaid ORDER BY fecha ROWS UNBOUNDED PRECEDING)
+FROM BSTransaccion AS A 
+where empresaid = 47
+	and isnull(importetotal,0) <> 0
+	and fecha between dateadd(day, -80, getdate()) and getdate()
+ORDER BY Empresaid , A.fecha ASC
